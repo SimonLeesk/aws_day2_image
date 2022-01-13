@@ -3,12 +3,15 @@ require('dotenv').config()
 const express = require("express")
 const multer = require("multer")
 const fs = require('fs')
+const path = require("path")
 
 const database = require('./database')
 
 const upload = multer({ dest: 'images/' })
 
 const app = express()
+
+app.use(express.static(path.join(__dirname, "build")))
 
 app.get("/", (req, res) => {
     res.send("Hello World")
